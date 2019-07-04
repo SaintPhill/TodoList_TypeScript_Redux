@@ -35,7 +35,7 @@ export default class Input extends React.Component<Props, State> {
                         placeholder={'inter your todo'}
                         onChange={(e) => this.handleChanges(e)}
                     />
-                    <button>click</button>
+                    <button>Add</button>
                 </form>
             </div>
         );

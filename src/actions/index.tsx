@@ -46,7 +46,7 @@ export interface FilterTodo {
 
 export type AppActions = AddTodo | DeleteTodo | EditTodo | SetTodo | ToggleTodo | FilterTodo;
 
-//define actions
+//define action creators
 
 let todoId = 1;
 

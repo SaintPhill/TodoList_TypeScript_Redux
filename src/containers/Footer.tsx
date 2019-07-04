@@ -2,8 +2,13 @@ import {Dispatch} from "react";
 import * as actions from "../actions";
 import {connect} from "react-redux";
 import Footer from "../components/Footer";
+import {StoreState} from "../types";
 
-
+function mapStateToProps({filter}: StoreState) {
+    return {
+        filterName: filter
+    }
+}
 
 function mapDispatchToProps(dispatch: Dispatch<actions.AppActions>) {
     return {
@@ -12,4 +17,4 @@ function mapDispatchToProps(dispatch: Dispatch<actions.AppActions>) {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Footer)
+export default connect(mapStateToProps, mapDispatchToProps)(Footer)

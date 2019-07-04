@@ -1,7 +1,12 @@
 import * as React from 'react';
 import Item from './Item'
+import styled from "styled-components";
 
-
+const ItemsWrap = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+`;
 
 export interface ItemType {
     index: number;
@@ -20,8 +25,7 @@ interface Props {
 
 export function List({todos, del, edit, handleTodo, toggleTodo} : Props) {
     return (
-        <div>
-            <div style={{display:"flex", width: '300px',flexWrap: 'wrap'}}>
+            <ItemsWrap>
                 {todos.map(todo => {
                     return <Item
                         key={todo.index}
@@ -32,7 +36,6 @@ export function List({todos, del, edit, handleTodo, toggleTodo} : Props) {
                         toggleTodo={toggleTodo}
                            />
                 })}
-            </div>
-        </div>
+            </ItemsWrap>
     )
 }

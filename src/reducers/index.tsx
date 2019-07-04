@@ -1,10 +1,9 @@
 import { AppActions } from '../actions';
-import { TodoState, FilterState, StoreState } from '../types';
-import {ADD_TODO, DELETE_TODO, EDIT_TODO, FILTER_TODO, SET_TODO, TOGGLE_TODO, FILTER} from '../constants';
-import { ItemType } from '../components/List'
-import {combineReducers} from "redux";
+import { TodoState, FilterState } from '../types';
+import { ADD_TODO, DELETE_TODO, EDIT_TODO, FILTER_TODO, SET_TODO, TOGGLE_TODO, FILTER } from '../constants';
+import { combineReducers } from "redux";
 
-const initState = [{text: 'qweqwe', index: 0, edit: false, completed: false}]
+const initState = [{text: 'qweqwe', index: 0, edit: false, completed: false}];
 
 
 export function todos(state: TodoState = initState, action: AppActions): TodoState {
@@ -13,16 +12,16 @@ export function todos(state: TodoState = initState, action: AppActions): TodoSta
             return [...state, {index: action.payload.id, text: action.payload.text, edit: false, completed: false}];
 
         case DELETE_TODO:
-            return state.filter((todo: ItemType) => todo.index !== action.payload.id);
+            return state.filter((todo) => todo.index !== action.payload.id);
 
         case EDIT_TODO:
-            return state.map((todo: ItemType) => todo.index === action.payload.id ? {...todo, edit: !todo.edit} : todo);
+            return state.map((todo) => todo.index === action.payload.id ? {...todo, edit: !todo.edit} : todo);
 
         case SET_TODO:
-            return state.map((todo: ItemType) => todo.index === action.payload.id ? {...todo, text: action.payload.text} : todo);
+            return state.map((todo) => todo.index === action.payload.id ? {...todo, text: action.payload.text} : todo);
 
         case TOGGLE_TODO:
-            return state.map((todo: ItemType) => todo.index === action.payload.id ? {...todo, completed: !todo.completed} : todo)
+            return state.map((todo) => todo.index === action.payload.id ? {...todo, completed: !todo.completed} : todo)
 
         default:
             return state;

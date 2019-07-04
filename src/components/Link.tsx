@@ -1,13 +1,27 @@
 import React from 'react'
+import styled from "styled-components";
 
 interface Props {
     filter: (filter: string) => void;
-    name: string
+    name: string;
+    filterName: string
 }
 
-const Link = ({filter, name} :Props) => {
+const StyledLink = styled.a<{selected?: boolean}>`
+    margin-right: 10px;
+    text-decoration: ${props => props.selected ? 'underline' : 'none'};
+    
+`;
+
+const Link = ({filter, filterName, name} :Props) => {
     return (
-        <a href="#" onClick={() => filter(name)}>{name.toLocaleLowerCase()}</a>
+        <StyledLink
+            selected={name === filterName}
+            href="#"
+            onClick={() => filter(name)}
+        >
+            {name.toLocaleLowerCase()}
+        </StyledLink>
     )
 };
 export default Link

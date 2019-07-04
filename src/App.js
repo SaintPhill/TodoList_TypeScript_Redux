@@ -6,8 +6,9 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
     display: flex;
+    flex-flow: column;
+    align-items: center;
     width: 500px;
-    flex-direction: column;
     margin: auto;
 `;
 
