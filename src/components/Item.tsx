@@ -53,11 +53,11 @@ export default function Item({todo, del, edit, handleTodo, toggleTodo}: Props) {
             <div>
                 <input
                     type="checkbox"
-                    checked={todo.completed}
+                    checked={todo.isCompleted}
                     onChange={() => toggleTodo(todo.index)}
                 />
-                <ItemText complete={todo.completed}>
-                {!todo.edit ? todo.text :
+                <ItemText complete={todo.isCompleted}>
+                {!todo.isEdit ? todo.text :
                     <ItemForm onSubmit={() => edit(todo.index)}>
                         <ItemFormInput
                             autoFocus
@@ -70,7 +70,7 @@ export default function Item({todo, del, edit, handleTodo, toggleTodo}: Props) {
             </div>
             <div>
                 <DeleteBtn onClick={() => del(todo.index)}>Delete</DeleteBtn>
-                <EditBtn disabled={todo.edit} onClick={() => edit(todo.index)}>Edit</EditBtn>
+                <EditBtn disabled={todo.isEdit} onClick={() => edit(todo.index)}>Edit</EditBtn>
             </div>
         </ItemWrapper>
     )

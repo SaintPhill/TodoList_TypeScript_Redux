@@ -11,8 +11,8 @@ const ItemsWrap = styled.div`
 export interface ItemType {
     index: number;
     text: string;
-    edit: boolean;
-    completed: boolean;
+    isEdit: boolean;
+    isCompleted: boolean;
 }
 
 interface Props {

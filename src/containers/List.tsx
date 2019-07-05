@@ -10,9 +10,9 @@ function getVisibleTodoList(todos: any, filter: FilterState) {
         case FILTER.ALL:
             return todos;
         case FILTER.ACTIVE:
-            return todos.filter((todo : ItemType) => !todo.completed);
+            return todos.filter((todo : ItemType) => !todo.isCompleted);
         case FILTER.COMPLETED:
-            return todos.filter((todo : ItemType) => todo.completed)
+            return todos.filter((todo : ItemType) => todo.isCompleted)
     }
 }
 
