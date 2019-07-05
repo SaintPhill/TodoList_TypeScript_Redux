@@ -2,9 +2,9 @@ import React from 'react'
 import styled from "styled-components";
 
 interface Props {
-    filter: (filter: string) => void;
-    name: string;
-    filterName: string
+    setFilter: (filter: string) => void;
+    filterName: string;
+    actualFilter: string
 }
 
 const StyledLink = styled.a<{selected?: boolean}>`
@@ -13,14 +13,14 @@ const StyledLink = styled.a<{selected?: boolean}>`
     
 `;
 
-const Link = ({filter, filterName, name} :Props) => {
+const Link = ({setFilter, actualFilter, filterName} :Props) => {
     return (
         <StyledLink
-            selected={name === filterName}
+            selected={filterName === actualFilter}
             href="#"
-            onClick={() => filter(name)}
+            onClick={() => setFilter(filterName)}
         >
-            {name.toLocaleLowerCase()}
+            {filterName.toLocaleLowerCase()}
         </StyledLink>
     )
 };

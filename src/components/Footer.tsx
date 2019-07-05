@@ -4,18 +4,18 @@ import {FILTER} from '../constants';
 import Input from "./Input";
 
 interface Props {
-    filter: (filter: string) => void;
-    submit: (text: string) => void;
-    filterName: string
+    actualFilter: string
+    setFilter: (filter: string) => void;
+    confirmInput: (text: string) => void;
 }
 
-const Footer = ({filter, filterName, submit} : Props) => {
+const Footer = ({setFilter, actualFilter, confirmInput} : Props) => {
     return (
         <div>
-            <Input submit={submit}/>
-            <Link filter={filter} filterName={filterName} name={FILTER.ALL}/>
-            <Link filter={filter} filterName={filterName} name={FILTER.ACTIVE}/>
-            <Link filter={filter} filterName={filterName} name={FILTER.COMPLETED}/>
+            <Input confirmInput={confirmInput}/>
+            <Link setFilter={setFilter} actualFilter={actualFilter} filterName={FILTER.ALL}/>
+            <Link setFilter={setFilter} actualFilter={actualFilter} filterName={FILTER.ACTIVE}/>
+            <Link setFilter={setFilter} actualFilter={actualFilter} filterName={FILTER.COMPLETED}/>
         </div>
     )
 };

@@ -6,14 +6,14 @@ import {StoreState} from "../types";
 
 function mapStateToProps({filter}: StoreState) {
     return {
-        filterName: filter
+        actualFilter: filter
     }
 }
 
 function mapDispatchToProps(dispatch: Dispatch<actions.AppActions>) {
     return {
-        filter: (filter: string) => dispatch(actions.filter_todo(filter)),
-        submit: (text:string) => dispatch(actions.add_todo(text))
+        setFilter: (filter: string) => dispatch(actions.filter_todo(filter)),
+        confirmInput: (text:string) => dispatch(actions.add_todo(text))
     }
 }
 
