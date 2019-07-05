@@ -43,35 +43,41 @@ interface Props {
     toggleTodo: (id: number) => void;
 }
 
-export default function Item({todo, del, edit, handleTodo, toggleTodo}: Props) {
-    function handleChanges(e:any) {
+export default class Item extends React.PureComponent<Props, {}> {
+
+    handleChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        handleTodo(todo.index, e.target.value)
+        const {todo} = this.props;
+        this.props.handleTodo(todo.index, e.target.value)
+    };
+
+    render() {
+        const {todo, del, edit, toggleTodo} = this.props;
+        return (
+            <ItemWrapper>
+                <div>
+                    <input
+                        type="checkbox"
+                        checked={todo.isCompleted}
+                        onChange={() => toggleTodo(todo.index)}
+                    />
+                    <ItemText complete={todo.isCompleted}>
+                        {!todo.isEdit ? todo.text :
+                            <ItemForm onSubmit={() => edit(todo.index)}>
+                                <ItemFormInput
+                                    autoFocus
+                                    value={todo.text}
+                                    onChange={this.handleChanges}
+                                    onBlur={() => edit(todo.index)}
+                                />
+                            </ItemForm>}
+                    </ItemText>
+                </div>
+                <div>
+                    <DeleteBtn onClick={() => del(todo.index)}>Delete</DeleteBtn>
+                    <EditBtn disabled={todo.isEdit} onClick={() => edit(todo.index)}>Edit</EditBtn>
+                </div>
+            </ItemWrapper>
+        );
     }
-    return (
-        <ItemWrapper>
-            <div>
-                <input
-                    type="checkbox"
-                    checked={todo.isCompleted}
-                    onChange={() => toggleTodo(todo.index)}
-                />
-                <ItemText complete={todo.isCompleted}>
-                {!todo.isEdit ? todo.text :
-                    <ItemForm onSubmit={() => edit(todo.index)}>
-                        <ItemFormInput
-                            autoFocus
-                            value={todo.text}
-                            onChange={(e) => handleChanges(e)}
-                            onBlur={() => edit(todo.index)}
-                        />
-                    </ItemForm>}
-               </ItemText>
-            </div>
-            <div>
-                <DeleteBtn onClick={() => del(todo.index)}>Delete</DeleteBtn>
-                <EditBtn disabled={todo.isEdit} onClick={() => edit(todo.index)}>Edit</EditBtn>
-            </div>
-        </ItemWrapper>
-    )
 }

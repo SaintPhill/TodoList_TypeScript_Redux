@@ -13,11 +13,11 @@ export default class Input extends React.Component<Props, State> {
         inputValue: ''
     };
 
-    handleChanges = (e: any) => {
+    handleChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
       this.setState({inputValue: e.target.value})
     };
 
-    addTodo = (e: any) => {
+    addTodo = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if(this.state.inputValue) {
             this.props.confirmInput(this.state.inputValue);
@@ -28,12 +28,11 @@ export default class Input extends React.Component<Props, State> {
     render() {
         return (
             <div>
-                <form onSubmit={(e) => this.addTodo(e)}>
+                <form onSubmit={this.addTodo}>
                     <input
                         value={this.state.inputValue}
-                        type="text"
                         placeholder={'inter your todo'}
-                        onChange={(e) => this.handleChanges(e)}
+                        onChange={this.handleChanges}
                     />
                     <button>Add</button>
                 </form>
